@@ -59,11 +59,11 @@ router.delete('/:id', async (req,res) => {
         if (!task) {
             res.status(404).json({msg : 'Task Not Found'});
         }
-        await Task.findByIdAndRemove(req.params.id);
+        await Task.findByIdAndDelete(req.params.id);
         res.json({msg: 'Task Deleted'});
 
     } catch (err) {
-
+        console.error(err);
         res.status(500).send('Server Error');
 
     }
