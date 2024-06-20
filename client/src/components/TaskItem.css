@@ -1,0 +1,27 @@
+/* src/components/TaskItem.css */
+
+.task-item {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+  }
+  
+  .task-item span {
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+  
+  .task-item span.completed {
+    text-decoration: line-through;
+    color: grey;
+  }
+  
+  .task-item button {
+    margin-left: 5px;
+  }
+  
+  .task-item input[type="text"] {
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+  

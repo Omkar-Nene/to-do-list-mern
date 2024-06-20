@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './TaskItem.css';
 
 const TaskItem = ({ task, onDelete, onUpdate, onToggleComplete }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -10,7 +11,7 @@ const TaskItem = ({ task, onDelete, onUpdate, onToggleComplete }) => {
   };
 
   return (
-    <div>
+    <div className='task-item'>
       {isEditing ? (
         <input
           type="text"
@@ -18,7 +19,7 @@ const TaskItem = ({ task, onDelete, onUpdate, onToggleComplete }) => {
           onChange={(e) => setUpdatedTitle(e.target.value)}
         />
       ) : (
-        <span>{task.title}</span>
+        <span className={task.completed ? 'completed' : ''}>{task.title}</span>
       )}
       <button onClick={() => onDelete(task._id)}>Delete</button>
       {isEditing ? (
