@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getTasks, deleteTask, updateTask } from '../services/taskService';
 import TaskItem from './TaskItem';
+import './TaskList.css'
 
 const TaskList = () =>  {
     const [tasks, setTasks] = useState([]);
@@ -30,7 +31,7 @@ const TaskList = () =>  {
     };
 
 return (    
-        <div>
+        <div className="task-list">
                 {tasks.map((task) => (
                 <TaskItem
                 key={task._id}
