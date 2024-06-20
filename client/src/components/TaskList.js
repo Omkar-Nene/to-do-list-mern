@@ -24,13 +24,19 @@ const TaskList = () =>  {
         setTasks(tasks.map((t) => (t._id === task._id ? task : t)));
     };
 
-return (
+    const handleUpdate = async (id, task) => {
+        const result = await updateTask(id, task);
+        setTasks(tasks.map(task => (task._id === id ? result : task)));
+    };
+
+return (    
         <div>
                 {tasks.map((task) => (
                 <TaskItem
                 key={task._id}
                 task={task}
                 onDelete={handleDelete}
+                onUpdate={handleUpdate}
                 onToggleComplete={handleToggleComplete}
                 />
             ))}
