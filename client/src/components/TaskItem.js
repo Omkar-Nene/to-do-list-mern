@@ -1,15 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const TaskItem = ({ task, onDelete, onToggleComplete }) => {
+const TaskItem = ({ task, onDelete, onUpdate, onToggleComplete }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [updatedTitle, setUpdatedTitle] = useState(task.title);
+
+  const handleUpdate = () => {
+    onUpdate(task._id, { ...task, title: updatedTitle });
+    setIsEditing(false);
+  };
+
   return (
     <div>
-      <span
-        style={{ textDecoration: task.completed ? 'line-through' : 'none' }}
-        onClick={() => onToggleComplete(task)}
-      >
-        {task.title}
-      </span>
+      {isEditing ? (
+        <input
+          type="text"
+          value={updatedTitle}
+          onChange={(e) => setUpdatedTitle(e.target.value)}
+        />
+      ) : (
+        <span>{task.title}</span>
+      )}
       <button onClick={() => onDelete(task._id)}>Delete</button>
+      {isEditing ? (
+        <button onClick={handleUpdate}>Save</button>
+      ) : (
+        <button onClick={() => setIsEditing(true)}>Edit</button>
+      )}
+      <button onClick={() => onToggleComplete(task)}>
+        {task.completed ? 'Undo' : 'Complete'}
+      </button>
     </div>
   );
 };
