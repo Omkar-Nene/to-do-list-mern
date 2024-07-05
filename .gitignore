@@ -15,5 +15,5 @@ yarn-error.log*
 .env
 
 # React
-/client/build
+#/client/build
 /client/node_modules
